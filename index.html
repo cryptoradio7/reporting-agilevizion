@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Test Manager Dashboard — Core Banking Migration</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Segoe UI', Calibri, Arial, sans-serif; background: #f0f2f5; color: #1a1a1a; padding: 24px; }
+  .dashboard { max-width: 1200px; margin: 0 auto; }
+  .title { background: #1B3A5C; color: #fff; padding: 20px 28px; border-radius: 8px 8px 0 0; font-size: 22px; font-weight: 700; letter-spacing: 0.5px; }
+  .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; padding: 20px; background: #e8ecf1; border-radius: 0 0 8px 8px; }
+  .card { background: #fff; border-radius: 8px; box-shadow: 0 1px 4px rgba(0,0,0,0.1); overflow: hidden; }
+  .card.full { grid-column: 1 / -1; }
+  .card-header { background: #2E5984; color: #fff; padding: 10px 16px; font-size: 13px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  th { background: #3a6fa0; color: #fff; padding: 8px 12px; text-align: center; font-weight: 600; }
+  td { padding: 8px 12px; border-bottom: 1px solid #e8e8e8; text-align: center; }
+  td:first-child { text-align: left; font-weight: 500; }
+  tr:last-child td { border-bottom: none; }
+  tr:hover { background: #f5f8fc; }
+  .tag { display: inline-block; padding: 3px 10px; border-radius: 12px; font-size: 11px; font-weight: 700; }
+  .green { background: #C6EFCE; color: #1a6b2a; }
+  .red { background: #FFC7CE; color: #9c0006; }
+  .orange { background: #FFEB9C; color: #9c6500; }
+  .reco { background: #FFF2CC; border-left: 4px solid #cc0000; padding: 14px 18px; font-size: 13px; color: #cc0000; font-weight: 600; margin: 0; }
+  .kpi-row { display: flex; gap: 0; }
+  .kpi { flex: 1; text-align: center; padding: 18px 10px; border-right: 1px solid #e8e8e8; }
+  .kpi:last-child { border-right: none; }
+  .kpi-value { font-size: 28px; font-weight: 700; color: #1B3A5C; }
+  .kpi-label { font-size: 11px; color: #666; margin-top: 4px; text-transform: uppercase; }
+  @media (max-width: 800px) { .grid { grid-template-columns: 1fr; } }
+  @media print { body { background: #fff; padding: 0; } .grid { background: #fff; gap: 12px; } .card { box-shadow: none; border: 1px solid #ccc; } }
+</style>
+</head>
+<body>
+<div class="dashboard">
+  <div class="title">Test Manager Dashboard — Core Banking Migration</div>
+  <div class="grid">
+
+    <!-- KPI Banner -->
+    <div class="card full">
+      <div class="kpi-row">
+        <div class="kpi">
+          <div class="kpi-value">1 240</div>
+          <div class="kpi-label">Total Tests</div>
+        </div>
+        <div class="kpi">
+          <div class="kpi-value" style="color:#2e7d32">71%</div>
+          <div class="kpi-label">Executed</div>
+        </div>
+        <div class="kpi">
+          <div class="kpi-value" style="color:#2e7d32">90%</div>
+          <div class="kpi-label">Pass Rate</div>
+        </div>
+        <div class="kpi">
+          <div class="kpi-value" style="color:#c62828">25</div>
+          <div class="kpi-label">Defects ouverts</div>
+        </div>
+        <div class="kpi">
+          <div class="kpi-value" style="color:#c62828">2</div>
+          <div class="kpi-label">Critical ouverts</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 1. Test Execution Summary -->
+    <div class="card">
+      <div class="card-header">1. Test Execution Summary</div>
+      <table>
+        <tr><th>Métrique</th><th>Valeur</th><th>Trend</th></tr>
+        <tr><td>Total test cases</td><td>1 240</td><td>—</td></tr>
+        <tr><td>Executed</td><td>876 (71%)</td><td>&#8593; +12%</td></tr>
+        <tr><td>Pass</td><td><span class="tag green">790 (90%)</span></td><td>&#8593;</td></tr>
+        <tr><td>Fail</td><td><span class="tag red">62 (7%)</span></td><td>&#8595;</td></tr>
+        <tr><td>Blocked</td><td><span class="tag orange">24 (3%)</span></td><td>&#8594;</td></tr>
+        <tr><td>Not executed</td><td>364 (29%)</td><td>&#8595;</td></tr>
+      </table>
+    </div>
+
+    <!-- 2. Defect Summary -->
+    <div class="card">
+      <div class="card-header">2. Defect Summary</div>
+      <table>
+        <tr><th>Sévérité</th><th>Ouverts</th><th>Résolus</th><th>Total</th></tr>
+        <tr><td><span class="tag red">Critical</span></td><td>2</td><td>1</td><td>3</td></tr>
+        <tr><td><span class="tag orange">Major</span></td><td>8</td><td>12</td><td>20</td></tr>
+        <tr><td>Minor</td><td>15</td><td>23</td><td>38</td></tr>
+        <tr style="font-weight:700; background:#f0f2f5;"><td>TOTAL</td><td>25</td><td>36</td><td>61</td></tr>
+      </table>
+    </div>
+
+    <!-- 3. Test Coverage par module -->
+    <div class="card full">
+      <div class="card-header">3. Test Coverage by Module</div>
+      <table>
+        <tr><th>Module</th><th>Requirements</th><th>Couverts</th><th>Coverage</th><th>Status</th></tr>
+        <tr><td>Core Banking (comptes)</td><td>45</td><td>43</td><td>96%</td><td><span class="tag green">OK</span></td></tr>
+        <tr><td>Paiements SEPA</td><td>32</td><td>28</td><td>88%</td><td><span class="tag green">OK</span></td></tr>
+        <tr><td>Reporting réglementaire</td><td>28</td><td>18</td><td>64%</td><td><span class="tag orange">AT RISK</span></td></tr>
+        <tr><td>Client onboarding</td><td>22</td><td>22</td><td>100%</td><td><span class="tag green">OK</span></td></tr>
+        <tr><td>Anti-Money Laundering</td><td>18</td><td>10</td><td>56%</td><td><span class="tag red">CRITICAL</span></td></tr>
+      </table>
+    </div>
+
+    <!-- 4. Go/No-Go Assessment -->
+    <div class="card">
+      <div class="card-header">4. Go / No-Go Assessment</div>
+      <table>
+        <tr><th>Critère</th><th>Seuil</th><th>Actuel</th><th>Status</th></tr>
+        <tr><td>Test execution rate</td><td>&#8805; 95%</td><td>71%</td><td><span class="tag red">NOT MET</span></td></tr>
+        <tr><td>Pass rate</td><td>&#8805; 90%</td><td>90%</td><td><span class="tag green">MET</span></td></tr>
+        <tr><td>Critical defects open</td><td>0</td><td>2</td><td><span class="tag red">NOT MET</span></td></tr>
+        <tr><td>Major defects open</td><td>&#8804; 5</td><td>8</td><td><span class="tag red">NOT MET</span></td></tr>
+        <tr><td>Regression pass rate</td><td>100%</td><td>98%</td><td><span class="tag orange">AT RISK</span></td></tr>
+      </table>
+      <div class="reco">RECOMMANDATION : NO-GO — 2 défauts critiques ouverts (Paiements). Couverture insuffisante AML (56%) et Reporting réglementaire (64%). Décaler go-live d'une semaine.</div>
+    </div>
+
+    <!-- 5. Risk Register -->
+    <div class="card">
+      <div class="card-header">5. Risk Register</div>
+      <table>
+        <tr><th>Risque</th><th>Impact</th><th>Prob.</th><th>Mitigation</th></tr>
+        <tr><td>Module AML couvert à 56%</td><td>Réglementaire (CSSF)</td><td><span class="tag red">Élevée</span></td><td style="text-align:left; font-size:12px;">Prioriser 8 test cases manquants cette semaine</td></tr>
+        <tr><td>2 critical defects paiements</td><td>Opérationnel</td><td><span class="tag red">Élevée</span></td><td style="text-align:left; font-size:12px;">Escalade au vendor, fix attendu J+2</td></tr>
+        <tr><td>Environnement SIT instable</td><td>Planning</td><td><span class="tag orange">Moyenne</span></td><td style="text-align:left; font-size:12px;">Backup env demandé à l'infra</td></tr>
+        <tr><td>Ressources UAT insuffisantes</td><td>Planning</td><td><span class="tag orange">Moyenne</span></td><td style="text-align:left; font-size:12px;">Demande 2 testeurs métier supplémentaires</td></tr>
+      </table>
+    </div>
+
+    <!-- 6. Fréquence de reporting -->
+    <div class="card full">
+      <div class="card-header">6. Fréquence de Reporting</div>
+      <table>
+        <tr><th>Report</th><th>Destinataire</th><th>Fréquence</th></tr>
+        <tr><td>Test Execution Summary</td><td>Équipe projet</td><td>Quotidien</td></tr>
+        <tr><td>Defect Summary + Coverage</td><td>Project Manager</td><td>Hebdo</td></tr>
+        <tr><td>Go/No-Go Assessment</td><td>Steering Committee</td><td>Par release / milestone</td></tr>
+        <tr><td>Risk Register</td><td>Management / Sponsor</td><td>Hebdo ou ad hoc</td></tr>
+      </table>
+    </div>
+
+  </div>
+</div>
+</body>
+</html>
